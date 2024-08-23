@@ -1,0 +1,4 @@
+a1,1011011011,1,Activo
+a1,1011011011,1,Activo
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Inactivo; Fecha: 22-08-2024, 08:58:42 p. m.
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Inactivo; Fecha: 22-08-2024, 08:58:42 p. m.
