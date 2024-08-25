@@ -2,7 +2,6 @@ package proy_final_g3;
 
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
@@ -105,4 +104,35 @@ public class Archivos {
         }
         return resultado.toString();
     }
+    
+    
+    public int contarAccesosTotales() {
+    int contador = 0;
+    try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
+        while (br.readLine() != null) {
+            contador++;
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return contador;
+    }
+    
+    public int contarAccesosPorFilial(String filial) {
+    int contador = 0;
+    try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            if (linea.contains("Filial: " + filial)) {
+                contador++;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return contador;
+    }
+    
+    
+    
 }

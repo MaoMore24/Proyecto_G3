@@ -95,24 +95,7 @@ public class Proyecto_G3_final {
                                      default -> JOptionPane.showMessageDialog(null, "Seleccione una opción valida");
                                 }
                                 break;
-                                
-                                
-                                
-                                
-                                
-                                /*filialElim = JOptionPane.showInputDialog("Digite la filial: ");
-                                switch (infoQuickpasses.eliminarQuickpass(filialElim)) {
-                                    case "1":
-                                        JOptionPane.showMessageDialog(null, "Operación realizada con éxito");
-                                        break;
-                                    case "2":
-                                        JOptionPane.showMessageDialog(null, "Error filial no encontrada.");
-                                        break;
-                                    case "3":
-                                        JOptionPane.showMessageDialog(null, "Lista vacía.");
-                                        break;
-                                }
-                                break;*/
+                             
                             case "4":
                                 filial = JOptionPane.showInputDialog("Ingrese la filial a la cual"
                                         + " le cambiará el estado: ");
@@ -120,10 +103,12 @@ public class Proyecto_G3_final {
                                 if (estadoCambio.toLowerCase().equals("activo")) {
                                     JOptionPane.showMessageDialog(null, "El estado es activo.");
                                     Estado nuevoEstado = Estado.Activo;
+                                    quickActivos++;
                                     infoQuickpasses.cambiarEstado(filial, nuevoEstado);
                                 } else if (estadoCambio.toLowerCase().equals("inactivo")) {
                                     JOptionPane.showMessageDialog(null, "El estado es inactivo.");
                                     Estado nuevoEstado = Estado.Inactivo;
+                                    quickInactivos++;
                                     infoQuickpasses.cambiarEstado(filial, nuevoEstado);
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Ingrese un estado correcto.");
@@ -194,19 +179,23 @@ public class Proyecto_G3_final {
                                 + "\n6) Regresar");
                         switch (menuReportes) {
                             case "1":
-                                JOptionPane.showMessageDialog(null, "Reporte de total de accesos registrados");
+                                int totalAccesos = archivo.contarAccesosTotales();
+                                JOptionPane.showMessageDialog(null, "Total de accesos registrados: "+totalAccesos);
                                 break;
                             case "2":
-                                JOptionPane.showMessageDialog(null, "Reporte de total de accesos por filial");
+                                String filialConsulta = JOptionPane.showInputDialog("Ingrese la filial para consultar:");
+                                int accesosPorFilial = archivo.contarAccesosPorFilial(filialConsulta);
+                                JOptionPane.showMessageDialog(null, "Total de accesos en la filial " + filialConsulta + ": " + accesosPorFilial);
                                 break;
                             case "3":
-                                JOptionPane.showMessageDialog(null, "Reporte de total de quickpass registrados");
+                                JOptionPane.showMessageDialog(null, "Total de quickpass registrados: " + infoQuickpasses.TotalQuickpass());
                                 break;
                             case "4":
-                                JOptionPane.showMessageDialog(null, "Reporte de total de quickpass activos e inactivos");
+                                JOptionPane.showMessageDialog(null, "Quickpass activos: " + quickActivos +
+                                      "\nQuickpass inactivos: " + quickInactivos());
                                 break;
                             case "5":
-                                JOptionPane.showMessageDialog(null, "Reporte de total de quickpass eliminados");
+                                JOptionPane.showMessageDialog(null, "Total de quickpass eliminados: " + infoQuickpasses.consultarQuickEliminados());
                                 break;
                             case "6":
                                 break;

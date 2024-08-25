@@ -12,6 +12,7 @@ public class GestionQuickpass {
     private Quickpass[] listaQuickpass;
     private Quickpass[] quickEliminado;
     private int cant, cantElim;
+    private int totalActivos=0, totalInactivos=0 ;
     FileWriter escribir;
     PrintWriter linea;
     
@@ -34,6 +35,7 @@ public class GestionQuickpass {
                 if(this.listaQuickpass[i]==null){
                     this.listaQuickpass[i] = pQuickpass;//asignación
                     cant= cant+1;
+                    totalActivos++;
                     try{
                     escribir = new FileWriter("Historial.txt", true);                
                     linea = new PrintWriter(escribir);
@@ -148,6 +150,50 @@ public class GestionQuickpass {
             return "Lista vacía.";
         }
     }
+    
+    public int TotalQuickpass(){
+        return cant;
+    }
+    
+    public int consultarQuickEliminados(){
+        return cantElim;
+    }
+    
+    public int consultarQuickInactivos(){
+        return quickInactivos;
+    }
+    
+    
+    //REVISAR
+    public boolean transferirQuickpass(int indice) {
+    // Verificar si el índice es válido
+        if (indice < 0 || indice >= cant) {
+            return false;
+        }
+
+    // Obtener el Quickpass a transferir
+    Quickpass quickpassATransferir = listaQuickpass[indice];
+
+    // Eliminar el Quickpass de la lista actual
+        for (int i = indice; i < cant - 1; i++) {
+            listaQuickpass[i] = listaQuickpass[i + 1];
+        }
+        listaQuickpass[cant - 1] = null;
+        cant--;
+
+        // Agregar el Quickpass a la lista de eliminados
+        if (!insertarQuickpassEliminado(quickpassATransferir)) {
+            // Manejar el caso en que no se pudo agregar a la lista de eliminados
+            // Por ejemplo, podría devolver false o lanzar una excepción
+            return false;
+        }
+
+        // Actualizar contadores (si es necesario)
+        // ...
+
+        return true;
+    }
+    
     
     @Override
     public String toString(){

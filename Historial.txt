@@ -2,3 +2,25 @@ a1,1011011011,1,Activo
 a1,1011011011,1,Activo
 Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Inactivo; Fecha: 22-08-2024, 08:58:42 p. m.
 Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Inactivo; Fecha: 22-08-2024, 08:58:42 p. m.
+a1,1011011011,1,Activo
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 24-08-2024, 08:20:22 p. m.
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 24-08-2024, 08:20:22 p. m.
+a1,1011011011,1,Activo
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 24-08-2024, 08:33:56 p. m.
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 24-08-2024, 08:33:56 p. m.
+a1,1011011011,1,Activo
+a2,1011011012,2,Activo
+a3,1011011013,3,Activo
+a4,1011011014,4,Activo
+a5,1011011015,5,Activo
+a6,1011011016,6,Activo
+a7,1011011017,7,Activo
+a8,1011011018,8,Activo
+a9,1011011019,9,Activo
+a0,1011011010,0,Activo
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 24-08-2024, 08:41:42 p. m.
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 24-08-2024, 08:41:42 p. m.
+Condición: Acceso permitido: Filial: a6, Código: 1011011016, Placa: 6, Estado: Activo; Fecha: 24-08-2024, 08:41:42 p. m.
+Condición: Acceso permitido: Filial: a8, Código: 1011011018, Placa: 8, Estado: Inactivo; Fecha: 24-08-2024, 08:41:42 p. m.
+Condición: Acceso permitido: Filial: a8, Código: 1011011018, Placa: 8, Estado: Inactivo; Fecha: 24-08-2024, 08:41:42 p. m.
+Condición: Acceso permitido: Filial: a4, Código: 1011011014, Placa: 4, Estado: Activo; Fecha: 24-08-2024, 08:41:42 p. m.
