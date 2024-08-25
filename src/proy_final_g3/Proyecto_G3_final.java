@@ -52,14 +52,22 @@ public class Proyecto_G3_final {
                                 + "\n5) Regresar");
                         switch (menuQuickpass) {
                             case "1":
-                                filial = JOptionPane.showInputDialog("Digite la filial: ");
+                                filial = JOptionPane.showInputDialog("Digite la filial: (Formato A y número)");
+                                while (!filial.toLowerCase().startsWith("a")) {
+                                    JOptionPane.showMessageDialog(null, "Filial incorrecto. La filial debe iniciar con A");
+                                    filial = JOptionPane.showInputDialog("Digite la filial: (Formato A y número)");
+                                }
                                 codigo = JOptionPane.showInputDialog("Digite el codigo: ");
                                 while (!codigo.startsWith("101") || codigo.length() != 10) {
                                     JOptionPane.showMessageDialog(null, "Código incorrecto. El código debe iniciar con 101"
                                             + " y tener una longitud de 10 caracteres");
                                     codigo = JOptionPane.showInputDialog("Digite el código: ");
                                 }
-                                placa = JOptionPane.showInputDialog("Digite la placa: ");
+                                placa = JOptionPane.showInputDialog("Digite la placa: (Debe contener 6 dígitos)");
+                                while (placa.length() != 6) {
+                                    JOptionPane.showMessageDialog(null, "Placa incorrecta. La placa debe tener una longitud de 6 caracteres");
+                                    placa = JOptionPane.showInputDialog("Digite la placa: (Debe contener 6 dígitos)");
+                                }
                                 if (infoQuickpasses.llenarQuickpass(new Quickpass(filial, codigo, placa, Estado.Activo))) {
                                     JOptionPane.showMessageDialog(null, "Ingreso completado con éxito");
                                 } else {
@@ -77,6 +85,7 @@ public class Proyecto_G3_final {
                                         int codResultado=-1;
                                         codigo=JOptionPane.showInputDialog("Digite el código a buscar y eliminar:");
                                         codResultado=infoQuickpasses.eliminarQuickpassPorCodigo(codigo);
+                                        archivo.escribirArchivo("Eliminado: "+ codigo);
                                         if(codResultado==0)
                                             JOptionPane.showMessageDialog(null, "La eliminación por código se ejecutó exitosamente.");
                                         else
@@ -87,6 +96,7 @@ public class Proyecto_G3_final {
                                         int codResultado=-1;
                                         placa=JOptionPane.showInputDialog("Digite la placa a buscar y eliminar:");
                                         codResultado=infoQuickpasses.eliminarQuickpassPorPlaca(placa);
+                                        archivo.escribirArchivo("Eliminado: "+ placa);
                                         if(codResultado==0)
                                             JOptionPane.showMessageDialog(null, "La eliminación por placa se ejecutó exitosamente.");
                                         else
@@ -104,12 +114,12 @@ public class Proyecto_G3_final {
                                     JOptionPane.showMessageDialog(null, "El estado es activo.");
                                     Estado nuevoEstado = Estado.Activo;
                                     infoQuickpasses.cambiarEstado(filial, nuevoEstado);
+                                    archivo.escribirArchivo("Filial: "+ filial + ", Estado: "+ nuevoEstado);
                                 } else if (estadoCambio.toLowerCase().equals("inactivo")) {
                                     JOptionPane.showMessageDialog(null, "El estado es inactivo.");
                                     Estado nuevoEstado = Estado.Inactivo;
-                                    quickInactivos++;
-                                    quickActivos--;
                                     infoQuickpasses.cambiarEstado(filial, nuevoEstado);
+                                    archivo.escribirArchivo("Filial: "+ filial + ", Estado: "+ nuevoEstado);
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Ingrese un estado correcto.");
                                 }
@@ -173,10 +183,9 @@ public class Proyecto_G3_final {
                         menuReportes = JOptionPane.showInputDialog(null, "Seleccione la opción de su interés: "
                                 + "\n\n1) Reporte de total de accesos registrados"
                                 + "\n2) Reporte de total de accesos por filial"
-                                + "\n3) Reporte de total de quickpass registrados"
-                                + "\n4) Reporte de total de quickpass activos e inactivos"
-                                + "\n5) Reporte de total de quickpass eliminados"
-                                + "\n6) Regresar");
+                                + "\n3) Reporte de total de quickpass activos e inactivos"
+                                + "\n4) Reporte de total de quickpass eliminados"
+                                + "\n5) Regresar");
                         switch (menuReportes) {
                             case "1":
                                 int totalAccesos = archivo.contarAccesosTotales();
@@ -188,19 +197,18 @@ public class Proyecto_G3_final {
                                 JOptionPane.showMessageDialog(null, "Total de accesos en la filial " + filialConsulta + ": " + accesosPorFilial);
                                 break;
                             case "3":
-                                JOptionPane.showMessageDialog(null, "Total de quickpass registrados: " + infoQuickpasses.TotalQuickpass());
+                                //JOptionPane.showMessageDialog(null, "Quickpass activos: " + infoQuickpasses.consultarQuickActivos() +
+                                //      "\nQuickpass inactivos: " + infoQuickpasses.consultarQuickInactivos());
+                                archivo.contarEstadosQuickpass();
                                 break;
                             case "4":
-                                JOptionPane.showMessageDialog(null, "Quickpass activos: " + quickActivos +
-                                      "\nQuickpass inactivos: " + infoQuickpasses.consultarQuickInactivos());
-                                break;
+                                int totalQuickpassEliminados = archivo.contarQuickpassEliminados();
+                                JOptionPane.showMessageDialog(null, "Total de quickpass eliminados: " + totalQuickpassEliminados);
+                                break;                            
                             case "5":
-                                JOptionPane.showMessageDialog(null, "Total de quickpass eliminados: " + infoQuickpasses.consultarQuickEliminados());
-                                break;
-                            case "6":
                                 break;
                         }
-                    } while (!menuReportes.equals("6"));
+                    } while (!menuReportes.equals("5"));
                     break;
 
                 case "4":

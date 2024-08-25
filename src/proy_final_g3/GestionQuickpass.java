@@ -40,6 +40,7 @@ public class GestionQuickpass {
                     escribir = new FileWriter("Historial.txt", true);                
                     linea = new PrintWriter(escribir);
                     linea.println(listaQuickpass[i]);
+                    linea.println("Filial: "+ listaQuickpass[i].getFilial() + ", Estado: "+ listaQuickpass[i].getEstado());
                     linea.close();
                     }catch(IOException ex){
                     System.out.println("Error al registrar");
@@ -53,17 +54,7 @@ public class GestionQuickpass {
         }        
     }
     
-    //Inserta el quickpass en la lista de eliminados
-    public boolean insertarQuickpassEliminado(Quickpass eQuickpass){
-            for (int i=0; i<this.quickEliminado.length-1; i++){
-                if(this.quickEliminado[i]==null){
-                    this.quickEliminado[i] = eQuickpass;//asignación
-                    cantElim++;
-                    return true;
-                }
-            }
-            return false;        
-    } 
+    
     
     //Cambiar el estado
     public boolean cambiarEstado(String filial, Estado nuevoEstado){
@@ -120,6 +111,7 @@ public class GestionQuickpass {
                     {
                         this.listaQuickpass[i]= null;
                         cant--;
+                        
                         JOptionPane.showMessageDialog(null,"Eliminacion por placa:\n"
                                 +"Lista quickpass eliminados:" + Arrays.toString(this.quickEliminado)+"\n"
                                 +"Lista quickpass funcionales despues de la eliminacion:" + Arrays.toString(this.listaQuickpass));
@@ -133,7 +125,17 @@ public class GestionQuickpass {
         return 1;
     }
     
-    
+    //Inserta el quickpass en la lista de eliminados
+    public boolean insertarQuickpassEliminado(Quickpass eQuickpass){
+            for (int i=0; i<this.quickEliminado.length-1; i++){
+                if(this.quickEliminado[i]==null){
+                    this.quickEliminado[i] = eQuickpass;//asignación
+                    cantElim++;
+                    return true;
+                }
+            }
+            return false;        
+    } 
     
     //Consultar filial
     public String consultarQuickpass(String filial) {
@@ -159,41 +161,22 @@ public class GestionQuickpass {
         return cantElim;
     }
     
-    public int consultarQuickInactivos(){
-        return totalInactivos;
+    
+        
+    public void mostrarQuickpassesEliminados() {
+        StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < cantElim; i++) {
+                sb.append(quickEliminado[i].toString()).append("\n");
+            }
+            JOptionPane.showMessageDialog(null, sb.toString());
+    }     
+    
+    public int contarQuickpassesEliminados() { 
+        return cantElim; 
     }
     
     
-    //REVISAR
-    public boolean transferirQuickpass(int indice) {
-    // Verificar si el índice es válido
-        if (indice < 0 || indice >= cant) {
-            return false;
-        }
-
-    // Obtener el Quickpass a transferir
-    Quickpass quickpassATransferir = listaQuickpass[indice];
-
-    // Eliminar el Quickpass de la lista actual
-        for (int i = indice; i < cant - 1; i++) {
-            listaQuickpass[i] = listaQuickpass[i + 1];
-        }
-        listaQuickpass[cant - 1] = null;
-        cant--;
-
-        // Agregar el Quickpass a la lista de eliminados
-        if (!insertarQuickpassEliminado(quickpassATransferir)) {
-            // Manejar el caso en que no se pudo agregar a la lista de eliminados
-            // Por ejemplo, podría devolver false o lanzar una excepción
-            return false;
-        }
-
-        // Actualizar contadores (si es necesario)
-        // ...
-
-        return true;
-    }
-    
+         
     
     @Override
     public String toString(){

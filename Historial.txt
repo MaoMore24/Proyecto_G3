@@ -1,11 +1,43 @@
 a1,1011011011,1,Activo
+Filial: a1, Estado: Activo
 a2,1011011012,2,Activo
+Filial: a2, Estado: Activo
 a3,1011011013,3,Activo
+Filial: a3, Estado: Activo
+Filial: a2, Estado: Inactivo
+Condición: Lista vacía.; Fecha: 25-08-2024, 16:44:47
 a1,1011011011,1,Activo
+Filial: a1, Estado: Activo
 a2,1011011012,2,Activo
+Filial: a2, Estado: Activo
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 25-08-2024, 16:44:47
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 25-08-2024, 16:44:47
+Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 25-08-2024, 16:44:47
+Condición: Acceso permitido: Filial: a2, Código: 1011011012, Placa: 2, Estado: Activo; Fecha: 25-08-2024, 16:44:47
+Filial: a2, Estado: Inactivo
+Condición: Lista vacía.; Fecha: 25-08-2024, 16:56:29
 a1,1011011011,1,Activo
+Filial: a1, Estado: Activo
+a2,1011011012,2,Activo
+Filial: a2, Estado: Activo
+a1,1011011011,123456,Activo
+Filial: a1, Estado: Activo
+a1,1011011011,123456,Activo
+Filial: a1, Estado: Activo
+a2,1011011012,258963,Activo
+Filial: a2, Estado: Activo
 a1,1011011011,1,Activo
-a1,1011011011,1,Activo
-a1,1011011111,1,Activoa1,1011011011,1,Activoa1,1011011011,1,Activo
-Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 25-08-2024, 14:29:07
-Condición: Acceso permitido: Filial: a1, Código: 1011011011, Placa: 1, Estado: Activo; Fecha: 25-08-2024, 14:29:07
+Filial: a1, Estado: Activo
+a2,1011011012,2,Activo
+Filial: a2, Estado: Activo
+Eliminado: 1011011011
+a1,1011011011,123456,Activo
+Filial: a1, Estado: Activo
+Eliminado: 1
+a1,1011011011,123456,Activo
+Filial: a1, Estado: Activo
+Eliminado: 123456
+a1,1011011011,null,Activo
+Filial: a1, Estado: Activo
+a1,1011011011,123456,Activo
+Filial: a1, Estado: Activo

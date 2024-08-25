@@ -34,17 +34,45 @@ public class Archivos {
         }
     }
 
+    public String consultarArchivo(String filial, String codigo, String placa) {
+        StringBuilder resultado = new StringBuilder();
+        boolean encontrado = false;
+        try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.contains(filial+","+codigo+","+placa)) {
+                    resultado.append(linea).append("\n");
+                    encontrado= true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(!encontrado){
+            resultado.append("No se encontraron registros de acceso para la filial: " + filial);
+        }
+        return resultado.toString();
+    }
+    
+    
+    
+    
     public String leerArchivoFilial(String filial) {
         StringBuilder resultado = new StringBuilder();
+        boolean encontrado = false;
         try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (linea.contains("Filial: " + filial)) {
                     resultado.append(linea).append("\n");
+                    encontrado= true;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if(!encontrado){
+            resultado.append("No se encontraron registros de acceso para la filial: " + filial);
         }
         return resultado.toString();
     }
@@ -77,62 +105,115 @@ public class Archivos {
     
     public String leerArchivoPorCodigo(String codigo) {
         StringBuilder resultado = new StringBuilder();
+        boolean encontrado = false;
         try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (linea.contains("Código: " + codigo)) {
                     resultado.append(linea).append("\n");
+                    encontrado = true;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if(!encontrado){
+            resultado.append("No se encontraron registros de acceso datos para el codigo: " + codigo);
         }
         return resultado.toString();
     }
 
     public String leerArchivoPorPlaca(String placa) {
         StringBuilder resultado = new StringBuilder();
+        boolean encontrado = false;
         try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (linea.contains("Placa: " + placa)) {
                     resultado.append(linea).append("\n");
+                    encontrado = true;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if(!encontrado){
+            resultado.append("No se encontraron registros de accesos para la placa: " + placa);
         }
         return resultado.toString();
     }
     
     
     public int contarAccesosTotales() {
-    int contador = 0;
-    try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
-        while (br.readLine() != null) {
-            contador++;
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    return contador;
-    }
-    
-    public int contarAccesosPorFilial(String filial) {
-    int contador = 0;
-    try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
-        String linea;
-        while ((linea = br.readLine()) != null) {
-            if (linea.contains("Filial: " + filial)) {
+        int contador = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
+            while (br.readLine() != null) {
                 contador++;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (IOException e) {
-        e.printStackTrace();
+        return contador;
+        }
+    
+    public int contarAccesosPorFilial(String filial) {
+        int contador = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.contains("Filial: " + filial)) {
+                    contador++;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contador;
+        }   
+    
+    public void contarEstadosQuickpass() {
+        int activos = 0;
+        int inactivos = 0;
+
+        try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if(linea.contains("Estado: Activo")){
+                    activos++;
+                }else if(linea.contains("Estado: Inactivo")){
+                    inactivos++;
+                }}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JOptionPane.showMessageDialog(null, "Registro de Quickpass por estados:\n\n"
+                + "Quickpass activos: " + activos
+                + "\nQuickpass inactivos: " + inactivos);
+        
+        }
+    
+    
+    public int contarQuickpassEliminados() {
+        int contador = 0; 
+        try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
+            String linea; 
+            while ((linea = br.readLine()) != null) {
+                if (linea.contains("Eliminado")) {
+                    contador++; 
+                } } } 
+        catch (IOException e) {
+            e.printStackTrace(); 
+        } 
+        return contador; 
     }
-    return contador;
+    
+    
+    
+    
     }
     
     
     
-}
+    
+
