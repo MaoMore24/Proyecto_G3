@@ -160,7 +160,7 @@ public class GestionQuickpass {
     }
     
     public int consultarQuickInactivos(){
-        return quickInactivos;
+        return totalInactivos;
     }
     
     

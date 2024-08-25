@@ -51,7 +51,7 @@ public class Archivos {
 
     public String leerArchivoPorRangoFechas(String fechaInicio, String fechaFin) {
         StringBuilder resultado = new StringBuilder();
-        java.time.format.DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy, hh:mm:ss a");
+        java.time.format.DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy, HH:mm:ss");
         try (BufferedReader br = new BufferedReader(new FileReader("Historial.txt"))) {
             String linea;
             while ((linea = br.readLine()) != null) {
@@ -59,8 +59,8 @@ public class Archivos {
                     String[] partes = linea.split("Fecha: ");
                     String fechaStr = partes[1];
                     java.time.LocalDateTime fecha = java.time.LocalDateTime.parse(fechaStr, formatter);
-                    java.time.LocalDateTime inicio = java.time.LocalDateTime.parse(fechaInicio + ", 12:00:00 AM", formatter);
-                    java.time.LocalDateTime fin = java.time.LocalDateTime.parse(fechaFin + ", 11:59:59 PM", formatter);
+                    java.time.LocalDateTime inicio = java.time.LocalDateTime.parse(fechaInicio + ", 00:00:00", formatter);
+                    java.time.LocalDateTime fin = java.time.LocalDateTime.parse(fechaFin + ", 23:59:59", formatter);
                     if ((fecha.isEqual(inicio) || fecha.isAfter(inicio)) && (fecha.isEqual(fin) || fecha.isBefore(fin))) {
                         resultado.append(linea).append("\n");
                     }

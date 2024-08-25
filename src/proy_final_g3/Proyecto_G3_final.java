@@ -28,7 +28,7 @@ public class Proyecto_G3_final {
         GestionQuickpass quickEliminados = new GestionQuickpass(50);
 
         // Obtener fecha y hora
-        dateTime = DateTimeFormatter.ofPattern("dd-MM-yyyy, hh:mm:ss a").format(LocalDateTime.now());
+        dateTime = DateTimeFormatter.ofPattern("dd-MM-yyyy, HH:mm:ss").format(LocalDateTime.now());
 
         // Menú de ingreso al sistema
         do {
@@ -103,12 +103,12 @@ public class Proyecto_G3_final {
                                 if (estadoCambio.toLowerCase().equals("activo")) {
                                     JOptionPane.showMessageDialog(null, "El estado es activo.");
                                     Estado nuevoEstado = Estado.Activo;
-                                    quickActivos++;
                                     infoQuickpasses.cambiarEstado(filial, nuevoEstado);
                                 } else if (estadoCambio.toLowerCase().equals("inactivo")) {
                                     JOptionPane.showMessageDialog(null, "El estado es inactivo.");
                                     Estado nuevoEstado = Estado.Inactivo;
                                     quickInactivos++;
+                                    quickActivos--;
                                     infoQuickpasses.cambiarEstado(filial, nuevoEstado);
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Ingrese un estado correcto.");
@@ -192,7 +192,7 @@ public class Proyecto_G3_final {
                                 break;
                             case "4":
                                 JOptionPane.showMessageDialog(null, "Quickpass activos: " + quickActivos +
-                                      "\nQuickpass inactivos: " + quickInactivos());
+                                      "\nQuickpass inactivos: " + infoQuickpasses.consultarQuickInactivos());
                                 break;
                             case "5":
                                 JOptionPane.showMessageDialog(null, "Total de quickpass eliminados: " + infoQuickpasses.consultarQuickEliminados());
@@ -212,4 +212,6 @@ public class Proyecto_G3_final {
             }
         } while (!menuPrincipal.equals("4"));
     }
+
+    
 }
