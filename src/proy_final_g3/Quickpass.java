@@ -45,18 +45,7 @@ public class Quickpass {
         return Estado;
     }
     
-    public void nuevoEstado(Estado nuevoEstado){
-        String respuesta=JOptionPane.showInputDialog("Digite el nuevo estado: (A/I)");
-        if(respuesta.equals("A")){
-            JOptionPane.showMessageDialog(null,"El estado es activo.");
-        }else if(respuesta.equals("I")){
-            nuevoEstado = Estado.Inactivo;
-            this.Estado = nuevoEstado;
-            JOptionPane.showMessageDialog(null,"El estado es Inactivo.");
-        }
-        
-    }
-    
+      
     
     //Código
     public void setCodigo(String pCodigo) {
